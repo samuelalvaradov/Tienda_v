@@ -1,0 +1,33 @@
+header {
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+article header {
+    text-align: center;
+    background-color: blue;
+    color: white;
+}
+h2 {
+    text-align: center;
+    background-color: green;
+    color: white;
+}    
+
+#titulo {
+    font-size: 44px;
+}
+.producto{
+    background-color: bisque;
+}
+nav a {
+    background-color: blue;
+    color: white;
+}
+
+nav a:hover {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    animation-delay: 1s;
+}
