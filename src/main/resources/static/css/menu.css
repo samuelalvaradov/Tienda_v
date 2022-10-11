@@ -56,3 +56,11 @@ body {
     padding: 8px 12px;
     border-radius: 8px;
 }
+
+.contenedor-imagenes {
+  display: flex;
+}
+
+.contenedor-imagenes img:first-child {
+  margin-right: 10px;
+}

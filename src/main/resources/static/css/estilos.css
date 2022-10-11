@@ -5,7 +5,7 @@ header {
 }
 article header {
     text-align: center;
-    background-color: blue;
+    background-color: burlywood;
     color: white;
 }
 h2 {
@@ -21,7 +21,7 @@ h2 {
     background-color: bisque;
 }
 nav a {
-    background-color: blue;
+    background-color: burlywood;
     color: white;
 }
 
