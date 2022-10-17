@@ -2,6 +2,7 @@ package com.tienda.controller;
 
 import com.tienda.dao.ClienteDao;
 import com.tienda.domain.Cliente;
+import com.tienda.service.ClienteService;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ public class IndexController {
     //Provoca que el objeto se cree si no existe o se use el que existe... no hace más de 1 objeto
     //Esto se conoce como inyeccion de dependencias...
     @Autowired
-    private ClienteDao clienteDao;
+    private ClienteService clienteService;
     
     @GetMapping("/")
     public String inicio(Model model){
@@ -26,7 +27,7 @@ public class IndexController {
         
         var clientes=Arrays.asList(cliente1,cliente2,cliente3);*/
         
-        var clientes = clienteDao.findAll();
+        var clientes = clienteService.getClientes();
         
         model.addAttribute("clientes",clientes);
         

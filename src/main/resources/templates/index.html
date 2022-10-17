@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml%22">
     <head>
         <title>TechShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Saludos</div>
-        <p>[[${saludo}]]</p>
-
         <h2>Datos de Clientes</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="cliente : ${clientes}">
-                    <th>[[${cliente.nombre}]]</th>
-                    <th>[[${cliente.apellidos}]]</th>
-                    <th>[[${cliente.correo}]]</th>
-                    <th>[[${cliente.telefono}]]</th>
-                </tr>
-            </tbody>
-        </table>
+        <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
+        <div th:if="${clientes != null and !clientes.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <th>[[${cliente.nombre}]]</th>
+                        <th>[[${cliente.apellidos}]]</th>
+                        <th>[[${cliente.correo}]]</th>
+                        <th>[[${cliente.telefono}]]</th>
+                        <th> <a th:href="@{/cliente/elimina/} + ${cliente.idCliente}">Elimina</a> </th>
+                        <th> <a th:href="@{/cliente/actualiza/} + ${cliente.idCliente}">Actualiza</a> </th>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${clientes == null or clientes.empty}">
+            <h3>No tenemos clientes que mostar</h3>
+        </div>
 
     </body>
 </html>
