@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml%22">
-    <head>
+<html  xmlns="http://www.w3.org/1999/xhtml%22"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="contenido">
-            <h2>Nuestros Articulos</h2>
+            <h2>[[#{index.titulo}]]</h2>
             <div th:if="${articulos != null and !articulos.empty}">
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>descripcion</th>
-                            <th>Precio</th>
-                            <th>Comprar</th>
+                            <th>[[#{articulo.descripcion}]]</th>
+                            <th>[[#{articulo.precio}]]</th>
+                            <th>[[#{articulo.comprar}]]</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="articulo : ${articulos}">
                             <th>[[${articulo.descripcion}]]</th>
-                            <th>[[${articulo.precio}]]</th>
-                            <th> <a th:href="@{/carrito/comprar/} + ${articulo.idArticulo}">Comprar</a> </th>
+                            <th style="text-align: right">[[${#numbers.formatDecimal(articulo.precio,3,2)}]]</th>
+                            <th> <a th:href="@{/carrito/comprar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a> </th>
                             </th>
                         </tr>
                     </tbody>
@@ -32,7 +31,7 @@
             </div>
 
             <div th:if="${articulos == null or articulos.empty}">
-                <h3>No tenemos articulos que mostar</h3>
+                <h3>[[#{articulo.no_mostrar}]]</h3>
             </div>
         </div>
         <footer th:replace="layout/plantilla :: footer">

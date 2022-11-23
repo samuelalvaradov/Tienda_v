@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml%22">
-    <head>
+      xmlns="http://www.w3.org/1999/xhtml%22"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="contenido">
         <h2>Datos de Clientes</h2>
         <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
+         <a th:href="@{/cliente/buscar}">Buscar cliente</a>
         <div th:if="${clientes != null and !clientes.empty}">
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Limite</th>
-                        <th>Eliminar</th>
-                        <th>Modificar</th>
+                        <th>[[#{cliente.nombre}]]</th>
+                        <th>[[#{cliente.apellidos}]]</th>
+                        <th>[[#{cliente.correo}]]</th>
+                        <th>[[#{cliente.telefono}]]</th>
+                        <th>[[#{cliente.limite}]]</th>
+                        <th>[[#{accion.eliminar}]]</th>
+                        <th>[[#{accion.actualizar}]]</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,9 +33,9 @@
                         <th>[[${cliente.apellidos}]]</th>
                         <th>[[${cliente.correo}]]</th>
                         <th>[[${cliente.telefono}]]</th>
-                        <th>[[${cliente.credito.limite}]]</th>
-                        <th> <a th:href="@{/cliente/elimina/} + ${cliente.idCliente}">Elimina</a> </th>
-                        <th> <a th:href="@{/cliente/actualiza/} + ${cliente.idCliente}">Actualiza</a> </th>
+                        <th style="text-align: right">[[${#numbers.formatDecimal(cliente.credito.limite,3,2)}]]</th>
+                        <th> <a th:href="@{/cliente/elimina/} + ${cliente.idCliente}">[[#{accion.eliminar}]]</a> </th>
+                        <th> <a th:href="@{/cliente/actualiza/} + ${cliente.idCliente}">[[#{accion.actualizar}]]</a> </th>
                         </th>
                     </tr>
                 </tbody>
@@ -41,7 +43,7 @@
         </div>
 
         <div th:if="${clientes == null or clientes.empty}">
-            <h3>No tenemos clientes que mostar</h3>
+            <h3>[[#{articulo.no_mostrar}]]</h3>
         </div>
     </div>
         <footer th:replace="layout/plantilla :: footer">

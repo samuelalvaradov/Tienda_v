@@ -21,6 +21,14 @@ public class ClienteServicelmpl implements ClienteService {
 
     //Los metodos para poder hacer un CRUD
     //Create Read Update Delete
+    
+     @Override
+    @Transactional(readOnly = true)
+    public List<Cliente> getClientesPorApellidos(String apellidos) {
+        return (List<Cliente>) clienteDao.findByApellidos(apellidos);
+    }
+    
+    
     @Override
     @Transactional(readOnly = true)
     public List<Cliente> getClientes() {

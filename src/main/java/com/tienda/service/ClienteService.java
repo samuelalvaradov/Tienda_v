@@ -8,6 +8,8 @@ public interface ClienteService {
     //Create Read Update Delete
 
     public List<Cliente> getClientes();
+    
+    public List<Cliente> getClientesPorApellidos(String apellidos);
 
     public Cliente getCliente(Cliente cliente);
 
