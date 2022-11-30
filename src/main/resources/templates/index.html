@@ -8,30 +8,21 @@
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <div class="contenido">
-            <h2>[[#{index.titulo}]]</h2>
-            <div th:if="${articulos != null and !articulos.empty}">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>[[#{articulo.descripcion}]]</th>
-                            <th>[[#{articulo.precio}]]</th>
-                            <th>[[#{articulo.comprar}]]</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="articulo : ${articulos}">
-                            <th>[[${articulo.descripcion}]]</th>
-                            <th style="text-align: right">[[${#numbers.formatDecimal(articulo.precio,3,2)}]]</th>
-                            <th> <a th:href="@{/carrito/comprar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a> </th>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${articulos != null and !articulos.empty}">
+                <div class="card" th:each="articulo : ${articulos}" >
+                    <!--     <img src="/images/equipo1.jpg" class="card-img-top" alt="equipo">  -->
+                    <div class="card-body">
+                        <h5 class="card-title">[[${articulo.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <a class="card-link" th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">[[#{articulo.comprar}]]</a>
+                        <p class="card-text">[[${articulo.detalle}]]</p>                        
+                    </div>
+                </div>                
             </div>
-
-            <div th:if="${articulos == null or articulos.empty}">
-                <h3>[[#{articulo.no_mostrar}]]</h3>
+            <div th:if="${articulos == null or articulos.empty}"  th:text="#{articulo.no_mostrar}">
+                No tenemos lista de articulos que mostrar...
             </div>
         </div>
         <footer th:replace="layout/plantilla :: footer">

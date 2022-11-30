@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml%22"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">                   
+                </div>
+            </div>
+        </section>
+
+        <section id="403">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{e403.titulo}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <h5>[[#{e403.texto}]]</h5>
+                            </div>
+                            <div class="card-body">
+                                <a class="card-link" th:href="@{/}">[[#{accion.regresar}]]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="layout/plantilla :: footer">
+
+    </body>
+</html>

@@ -1,51 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml%22"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <div class="contenido">
-        <h2>Datos de Clientes</h2>
-        <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
-         <a th:href="@{/cliente/buscar}">Buscar cliente</a>
-        <div th:if="${clientes != null and !clientes.empty}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>[[#{cliente.nombre}]]</th>
-                        <th>[[#{cliente.apellidos}]]</th>
-                        <th>[[#{cliente.correo}]]</th>
-                        <th>[[#{cliente.telefono}]]</th>
-                        <th>[[#{cliente.limite}]]</th>
-                        <th>[[#{accion.eliminar}]]</th>
-                        <th>[[#{accion.actualizar}]]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="cliente : ${clientes}">
-                        <th>[[${cliente.nombre}]]</th>
-                        <th>[[${cliente.apellidos}]]</th>
-                        <th>[[${cliente.correo}]]</th>
-                        <th>[[${cliente.telefono}]]</th>
-                        <th style="text-align: right">[[${#numbers.formatDecimal(cliente.credito.limite,3,2)}]]</th>
-                        <th> <a th:href="@{/cliente/elimina/} + ${cliente.idCliente}">[[#{accion.eliminar}]]</a> </th>
-                        <th> <a th:href="@{/cliente/actualiza/} + ${cliente.idCliente}">[[#{accion.actualizar}]]</a> </th>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div th:if="${clientes == null or clientes.empty}">
-            <h3>[[#{articulo.no_mostrar}]]</h3>
-        </div>
-    </div>
+        <section th:replace="cliente/fragmentosCliente :: botonesAgregar"/>
+        <section th:replace="cliente/fragmentosCliente :: agregarCliente"/>
+        <section th:replace="cliente/fragmentosCliente :: listadoClientes"/>         
         <footer th:replace="layout/plantilla :: footer">
 
     </body>

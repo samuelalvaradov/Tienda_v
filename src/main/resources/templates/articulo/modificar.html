@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml%22">
-    <head>
+      xmlns="http://www.w3.org/1999/xhtml%22"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="contenido">
-            <h2>Datos de Articulos</h2>
-            <a th:href="@{/articulo/listado}">Regresar</a>
+            <h2>[[#{articulo.datos}]]</h2>
+            <a th:href="@{/articulo/listado}">[[#{accion.regresar}]]</a>
             </hr>
 
             <form th:action="@{/articulo/guardar}"
@@ -19,36 +19,36 @@
                   th:object="${articulo}">
                 <input type="hidden" name="idArticulo" th:field="*{idArticulo}">
                 <fieldset>
-                    <label for="categoria">Categoria</label>
+                    <label for="categoria">[[#{articulo.categoria}]]</label>
                     <input type="text" name="categoria" placeholder="Categoria" th:field="*{idCategoria}"/>
                 </fieldset>
 
                 <fieldset>
-                    <label for="descripcion">Descripcion</label>
+                    <label for="descripcion">[[#{articulo.descripcion}]]</label>
                     <input type="text" name="Descripcion" placeholder="Descripcion" th:field="*{descripcion}"/>
                 </fieldset>
 
                 <fieldset>
-                    <label for="detalle">Detalle</label>
+                    <label for="detalle">[[#{articulo.detalle}]]</label>
                     <input type="text" name="detalle" placeholder="Detalle Electronico" th:field="*{detalle}"/>
                 </fieldset>
 
                 <fieldset>
-                    <label for="precio">Precio</label>
+                    <label for="precio">[[#{articulo.precio}]]</label>
                     <input type="number" name="precio" th:field="*{precio}"/>
                 </fieldset>
                 <hr/>
                 <fieldset>
-                    <label for="existencias">Existencias</label>
+                    <label for="existencias">[[#{articulo.existencias}]]</label>
                     <input type="number" name="existencias" th:field="*{existencias}"/>
                 </fieldset>
                 <hr/>
                 <fieldset>
-                    <label for="activo">Activo</label>
+                    <label for="activo">[[#{articulo.activo}]]</label>
                     <input type="text" name="activo" th:field="*{activo}"/>
                 </fieldset>
                 <hr/>
-                <input type="submit" name="guardar" value="guardar"/>
+                <button type="submit" th:text="#{accion.guardar}"/>
             </form>
         </div>
         <footer th:replace="layout/plantilla :: footer">
