@@ -1,43 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml%22"
-     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="layout/plantilla :: head">
         <title>TechShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <div class="contenido">
-        <h2>[[#{categoria.datos}]]</h2>
-        <a th:href="@{/categoria/nuevo}">[[#{categoria.nuevo}]]</a>
-        <div th:if="${categorias != null and !categorias.empty}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>[[#{categoria.descripcion}]]</th>
-                        <th>[[#{categoria.activo}]]</th>
-                        <th>[[#{accion.eliminar}]]</th>
-                        <th>[[#{accion.actualizar}]]</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="categoria : ${categorias}">
-                        <th>[[${categoria.descripcion}]]</th>
-                        <th>[[${categoria.activo}]]</th>
-                        <th> <a th:href="@{/categoria/elimina/} + ${categoria.idCategoria}">[[#{accion.eliminar}]]</a> </th>
-                        <th> <a th:href="@{/categoria/actualiza/} + ${categoria.idCategoria}">[[#{accion.actualizar}]]</a> </th>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div th:if="${categorias == null or categorias.empty}">
-            <h3>[[#{categoria.no_mostrar}]]</h3>
-        </div>
-    </div>
+        <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
+        <section th:replace="categoria/fragmentosCategoria :: agregarCategoria"/>
+        <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>         
         <footer th:replace="layout/plantilla :: footer">
 
     </body>
